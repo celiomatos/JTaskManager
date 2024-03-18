@@ -6,9 +6,11 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 public class SQLiteConnection {
+	
+	public static String urlBanco = "jdbc:sqlite:testdb.db";
 
 	public static Connection connect() throws SQLException {
-		Connection conn = DriverManager.getConnection("jdbc:sqlite:banco.db");
+		Connection conn = DriverManager.getConnection(urlBanco);
 
 		try (Statement stm = conn.createStatement()) {
 			stm.execute(createTableCategoria());

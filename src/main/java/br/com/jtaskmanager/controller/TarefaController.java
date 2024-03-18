@@ -19,7 +19,7 @@ public class TarefaController {
 		criterioAceitacaoDAO = new CriterioAceitacaoDAO();
 	}
 
-	public void save(Tarefa tarefa) throws SQLException {
+	public Integer save(Tarefa tarefa) throws SQLException, NullPointerException {
 		var concluido = true;
 		for (var criterio : tarefa.getCriteriosAceitacao()) {
 			if (concluido) {
@@ -32,14 +32,16 @@ public class TarefaController {
 			tarefa.setStatus("novo");
 		}
 
-		int idTarefa = tarefaDAO.save(tarefa);
+		var idTarefa = tarefaDAO.save(tarefa);
 		for (var criterio : tarefa.getCriteriosAceitacao()) {
 			criterio.setIdTarefa(idTarefa);
 			criterioAceitacaoDAO.save(criterio);
 		}
+		
+		return idTarefa;
 	}
 
-	public void update(Tarefa tarefa, List<CriterioAceitacao> criteriosAExcluir) throws SQLException {
+	public void update(Tarefa tarefa, List<CriterioAceitacao> criteriosAExcluir) throws SQLException, NullPointerException {
 		if (!criteriosAExcluir.isEmpty()) {
 			for (var criterio : criteriosAExcluir) {
 				criterioAceitacaoDAO.delete(criterio.getId());

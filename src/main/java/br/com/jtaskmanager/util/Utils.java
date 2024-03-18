@@ -27,7 +27,6 @@ public class Utils {
 			LocalDate.parse(value, dtFormat);
 			return true;
 		} catch (Exception e) {
-			e.printStackTrace();
 			return false;
 		}
 	}
