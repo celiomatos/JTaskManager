@@ -3,6 +3,7 @@ package br.com.jtaskmanager;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 
+import br.com.jtaskmanager.connect.SQLiteConnection;
 import br.com.jtaskmanager.view.principal.Principal;
 
 public class JTaskManager {
@@ -19,6 +20,8 @@ public class JTaskManager {
 		} catch (ClassNotFoundException | IllegalAccessException | InstantiationException
 				| UnsupportedLookAndFeelException e) {
 		}
+
+		SQLiteConnection.urlBanco = "jdbc:sqlite:banco.db";
 
 		var principal = new Principal();
 		principal.setVisible(true);

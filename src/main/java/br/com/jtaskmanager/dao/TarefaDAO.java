@@ -12,7 +12,7 @@ import br.com.jtaskmanager.util.Utils;
 
 public class TarefaDAO {
 
-	public int save(Tarefa tarefa) throws SQLException {
+	public Integer save(Tarefa tarefa) throws SQLException, NullPointerException {
 		var sql = new StringBuilder("INSERT INTO tb_tarefa");
 		sql.append("(nome, descricao, id_categoria, data_criacao, status) ");
 		sql.append("VALUES(?, ?, ?, ?, ?);");
@@ -34,7 +34,7 @@ public class TarefaDAO {
 		return id;
 	}
 
-	public void update(Tarefa tarefa, int id) throws SQLException {
+	public void update(Tarefa tarefa, int id) throws SQLException, NullPointerException {
 		var sql = new StringBuilder("UPDATE tb_tarefa ");
 		sql.append("SET nome = ?, descricao = ?, ");
 		sql.append("id_categoria = ?, data_criacao = ?, status = ? ");
